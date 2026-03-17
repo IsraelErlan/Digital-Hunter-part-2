@@ -38,3 +38,12 @@ def detection_unknown_targets():
         raise HTTPException(status_code=500, detail=str(e))
 
 
+
+
+@router.get('/get_targets_with_unusual_activity')
+def get_targets_with_unusual_activity():
+    try:
+        result = Queries.get_targets_with_unusual_activity()
+        return result
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
