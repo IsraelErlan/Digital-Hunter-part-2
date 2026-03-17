@@ -79,3 +79,17 @@ class Queries:
         '''
         result = cls.run_query(query)
         return result
+
+
+
+    @classmethod
+    def get_locations_by_entity_id(cls, entity_id):
+        query = ''' SELECT `reported_lat`, `reported_lon`
+                    FROM `intel_signals` 
+                    WHERE `entity_id` = %s
+                    ORDER BY timestamp'''
+        with SQL.get_cnx() as cnx: 
+            with cnx.cursor() as cursor:
+                cursor.execute(query, (entity_id))
+                result = cursor.fetchall()
+        return result
