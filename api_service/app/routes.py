@@ -55,7 +55,7 @@ def get_line_graph(entity_id: str):
     try:
         result = Queries.get_locations_by_entity_id(entity_id)
         plot_map_with_geometry(result)
-        return result
+        return {"amount of places": len(result)}
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
     
