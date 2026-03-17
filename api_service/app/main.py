@@ -1,2 +1,11 @@
-import db.sql_connection
-print(1111111111)
+import uvicorn 
+from fastapi import FastAPI 
+import routes 
+
+app = FastAPI()
+app.include_router(routes.router)
+
+if __name__ == '__main__':
+    uvicorn.run(app, host='0.0.0.0', port=8000)
+
+

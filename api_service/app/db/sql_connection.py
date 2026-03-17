@@ -1,5 +1,4 @@
 import mysql.connector
-from mysql.connector import errorcode
 import os 
 
 SQL_HOST = os.getenv('SQL_HOST', 'localhost')
@@ -26,11 +25,13 @@ class SQL:
   
   @classmethod
   def get_cursor(cls):
-    if cls.cursor is None:
-        try:
-            cnx = cls.get_cnx()
-            cls.cursor = cnx.cursor()
-        except mysql.connector.Error as err:
-            print(err)
+    # if cls.cursor is None:
+    #     try:
+    #         cnx = cls.get_cnx()
+    #         cls.cursor = cnx.cursor(dictionary=True)
+    #     except mysql.connector.Error as err:
+    #         print(err)
+    cnx = cls.get_cnx()
+    cls.cursor = cnx.cursor(dictionary=True)
     return cls.cursor
       
